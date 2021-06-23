@@ -6,12 +6,12 @@ public class GameManager : MonoBehaviour
 {
     // Class variables
     private int gameScore = 0;
-    private int gameLives = 3;
+    private int playerHull = 100;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Game Lives: " + gameLives);
+        Debug.Log("Hull: " + playerHull);
         Debug.Log("Score: " + gameScore);
     }
 
@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
     // Method for adding/decreasing score
     public void AddScore(int amount)
     {
-        // Check that player has not already finished the game
-        if(gameLives > 0)
+        // Check that player has not died
+        if(playerHull > 0)
         {
             gameScore += amount;
             Debug.Log("Score: " + gameScore);
@@ -32,20 +32,20 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Method for adding/decreasing lives
-    public void AddLives(int amount)
+    // Method for adding/decreasing player hull
+    public void AddHull(int amount)
     {
-        gameLives += amount;
+        playerHull += amount;
         // Check that player hasnt already finished the game
-        if (gameLives > 0)
+        if (playerHull > 0)
         {
-            Debug.Log("Lives: " + gameLives);
+            Debug.Log("Hull: " + playerHull);
         }
     }
 
     public void CheckGameOver()
     {
-        if (gameLives == 0)
+        if (playerHull <= 0)
         {
             Debug.Log("Game Over!");
         }
@@ -58,9 +58,9 @@ public class GameManager : MonoBehaviour
         set => gameScore = value;
     }
 
-    public int Lives
+    public int Hull
     {
-        get => gameLives;
-        set => gameLives = value;
+        get => playerHull;
+        set => playerHull = value;
     }
 }

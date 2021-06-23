@@ -20,20 +20,29 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Projectile") && !gameObject.tag.Equals("Obstacle"))
+        if (other.tag.Equals("Projectile") && gameObject.tag.Equals("Enemy"))
         {
             // Destroy the projectile object
             Destroy(other.gameObject);
-            // Feed food to the animal
+            // Destroy enemy ship
+            Destroy(gameObject);
+            gameManager.AddScore(5);
             // gameObject.GetComponent<AnimalHunger>().FeedAnimal(1);
         }
-        else if (other.tag.Equals("Player") && gameObject.tag.Equals("Obstacle"))
+        else if(other.tag.Equals("Projectile") && gameObject.tag.Equals("Obstacle"))
         {
-            // Decrease lives then announce lives remaining
-            gameManager.AddLives(-1);
+            // Destroy the projectile object
+            Destroy(other.gameObject);
+            // Destroy obstacle
+            Destroy(gameObject);
+        }
+        else if (other.tag.Equals("Player") && (gameObject.tag.Equals("Obstacle") || gameObject.tag.Equals("Enemy")))
+        {
+            // Decrease hull then announce hull remaining
+            gameManager.AddHull(-1);
             // Destroy this object
             Destroy(gameObject);
-            // Check if game over when lives hit 0
+            // Check if game over when hull hit 0
             gameManager.CheckGameOver();
         }
 

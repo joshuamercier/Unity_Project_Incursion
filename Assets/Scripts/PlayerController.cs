@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     private float verticalInput;
     public float speed;
     public GameObject projectilePrefab;
-
-    private float xRange = 26.0f; // Boundary of player X-axis
-    private float zRange = 23.0f; // boundary of player Z-axis
+    
+    private float xRange = 24.0f;  // Boundary of player X-axis
+    private float zRange = 23.0f;  // boundary of player Z-axis
+    private float fireRate = 0.5f; // Fire rate for player to shoot
+    private float lastShot = 0.0f; // Last shot fired
    
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,7 @@ public class PlayerController : MonoBehaviour
         // Check player is kept in game boundaries
         CheckBoundaries();
 
-        // Check that player is throwing
+        // Check that player is firing
         CheckFire();
 
         // Check player input movement
@@ -60,10 +62,9 @@ public class PlayerController : MonoBehaviour
     // Method that checks if player is using space input to fire weapon
     void CheckFire()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            // Fire projectile
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            Fire();
         }
     }
 
@@ -75,6 +76,16 @@ public class PlayerController : MonoBehaviour
 
         verticalInput = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
+    }
+
+    void Fire()
+    {
+        if(Time.time > fireRate + lastShot)
+        {
+            // Fire projectile
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            lastShot = Time.time;
+        }
     }
 }
 
