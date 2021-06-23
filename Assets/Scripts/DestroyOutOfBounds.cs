@@ -5,8 +5,8 @@ using UnityEngine;
 public class DestroyOutOfBounds : MonoBehaviour
 {
     // Class variables
-    public float xRange = 30.0f; // Boundary of player X-axis
-    public float zRange = 30.0f; // boundary of player Z-axis
+    public float xRange = 40.0f; // Boundary of player X-axis
+    public float zRange = 40.0f; // boundary of player Z-axis
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class DestroyOutOfBounds : MonoBehaviour
     void Update()
     {
         // If an object goes past the game boundaries, remove that object
-        if (transform.position.z > xRange || transform.position.z < -xRange || transform.position.x > xRange || transform.position.x < -xRange)
+        if (transform.position.z > zRange || transform.position.z < -zRange || transform.position.x > xRange || transform.position.x < -xRange)
         {
             Destroy(gameObject);
         }
