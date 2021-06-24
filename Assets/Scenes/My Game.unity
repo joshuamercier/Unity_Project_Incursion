@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 720626822}
   - component: {fileID: 720626827}
   m_Layer: 0
-  m_Name: Space_M
+  m_Name: Space_U
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,7 +368,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 1258179074}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &720626827
 MonoBehaviour:
@@ -382,6 +382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b464c0ae58bfac841a0929fca3d028bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upperSpace: {fileID: 720626821}
+  lowerSpace: {fileID: 1882670483}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,9 +543,9 @@ Transform:
   m_LocalPosition: {x: 7.0771875, y: -1.0005474, z: 72.59378}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1882670484}
   - {fileID: 720626826}
   - {fileID: 2071418411}
+  - {fileID: 1882670484}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -562,7 +564,7 @@ GameObject:
   - component: {fileID: 1882670485}
   - component: {fileID: 1882670489}
   m_Layer: 0
-  m_Name: Space_U
+  m_Name: Space_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -576,11 +578,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882670483}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -7.0771875, y: 0.00054740906, z: 27.40622}
+  m_LocalPosition: {x: -7.0771875, y: 0.00054740906, z: -122.5}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 1258179074}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1882670485
 MonoBehaviour:
@@ -670,6 +672,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b464c0ae58bfac841a0929fca3d028bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upperSpace: {fileID: 720626821}
+  lowerSpace: {fileID: 2071418407}
 --- !u!1 &2071418407
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,7 +689,7 @@ GameObject:
   - component: {fileID: 2071418412}
   - component: {fileID: 2071418413}
   m_Layer: 0
-  m_Name: Space_L
+  m_Name: Space_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -766,7 +770,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 1258179074}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2071418412
 MonoBehaviour:
@@ -793,6 +797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b464c0ae58bfac841a0929fca3d028bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upperSpace: {fileID: 720626821}
+  lowerSpace: {fileID: 1882670483}
 --- !u!1001 &2269302850330041599
 PrefabInstance:
   m_ObjectHideFlags: 0
