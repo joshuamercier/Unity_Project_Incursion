@@ -6,7 +6,6 @@ public class RepeatBackground : MonoBehaviour
 {
     // Class variables
     public GameObject upperSpace;
-    public GameObject lowerSpace;
 
     private Vector3 resetPos;
     private Vector3 posWhenReset;
@@ -16,7 +15,7 @@ public class RepeatBackground : MonoBehaviour
         // Grab position to where we will reset the object to
         resetPos = upperSpace.transform.position;
         // Grab position to know when we should reset the object
-        posWhenReset = lowerSpace.transform.position;
+        posWhenReset = new Vector3(transform.position.x, transform.position.y, -97.1f);
     }
 
     // Update is called once per frame
