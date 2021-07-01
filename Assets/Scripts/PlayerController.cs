@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public GameObject projectilePrefab;
     
-    private float xRange = 24.0f;  // Boundary of player X-axis
-    private float zRange = 23.0f;  // boundary of player Z-axis
+    private float xRange = 62.0f;  // Boundary of player X-axis
+    private float zRange = 29.0f;  // boundary of player Z-axis
     private float fireRate = 0.5f; // Fire rate for player to shoot
     private float lastShot = 0.0f; // Last shot fired
    

@@ -8,10 +8,11 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] enemyPrefabs;          // Array of enemies
     public GameObject[] obstaclesPrefabs;      // Array of obstacles
 
-    private float spawnRangeTopX = 25.0f;       // Range of spawn for X coordiante top
-    private float spawnRangeSideX = -26.0f;     // Range of spawn for X coordiante sides
-    private float spawnRangeTopZ = 30.0f;       // Range of spawn for Z coordiante top
-    private float spawnRangeSideZ = 24.0f;      // Range of spawn for Z coordiante sides
+    private float spawnRangeTopX = 62.0f;       // Range of spawn for X coordiante top
+    private float spawnRangeTopZ = 35.0f;       // Range of spawn for Z coordiante top
+
+    private float spawnRangeSideX = 65.0f;     // Range of spawn for X coordiante sides
+    private float spawnRangeSideZ = 29.0f;      // Range of spawn for Z coordiante sides
 
     private float startDelay = 2.0f;            // Seconds of delay for enemy spawning to begin
     private float spawnInterval = 1.5f;         // Seconds between each enemy spawn
@@ -44,7 +45,7 @@ public class SpawnManager : MonoBehaviour
         // Index of obstacle to spawn
         int obstacleIndex = Random.Range(0, obstaclesPrefabs.Length);
         // Random vector3 location for obstacle to be spawned at
-        Vector3 spawnPos = new Vector3(spawnRangeSideX, 0, Random.Range(-spawnRangeSideZ, spawnRangeSideZ));
+        Vector3 spawnPos = new Vector3(-spawnRangeSideX, 0, Random.Range(-spawnRangeSideZ, spawnRangeSideZ));
         // Creates random obstacle from the random index, places this obstacle in the random spawn location, and uses the obstacle prefab rotation as default
         Instantiate(obstaclesPrefabs[obstacleIndex], spawnPos, obstaclesPrefabs[obstacleIndex].transform.rotation);
     }

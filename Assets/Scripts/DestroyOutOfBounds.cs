@@ -5,8 +5,8 @@ using UnityEngine;
 public class DestroyOutOfBounds : MonoBehaviour
 {
     // Class variables
-    public float xRange = 40.0f; // Boundary of player X-axis
-    public float zRange = 40.0f; // boundary of player Z-axis
+    private float xRange = 70.0f; // Boundary of X-axis destruction
+    private float zRange = 40.0f; // boundary of player Z-axis
 
     // Start is called before the first frame update
     void Start()
