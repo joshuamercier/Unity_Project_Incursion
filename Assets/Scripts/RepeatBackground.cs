@@ -9,6 +9,7 @@ public class RepeatBackground : MonoBehaviour
 
     private Material material;
     private Vector2 offset;
+
     // Start is called before the first frame update
     void Start()
     {
