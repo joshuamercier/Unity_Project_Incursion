@@ -5,25 +5,22 @@ using UnityEngine;
 public class RepeatBackground : MonoBehaviour
 {
     // Class variables
-    public GameObject upperSpace;
+    public float xVelocity, yVelocity;
 
-    private Vector3 resetPos;
-    private Vector3 posWhenReset;
+    private Material material;
+    private Vector2 offset;
     // Start is called before the first frame update
     void Start()
     {
-        // Grab position to where we will reset the object to
-        resetPos = upperSpace.transform.position;
-        // Grab position to know when we should reset the object
-        posWhenReset = new Vector3(transform.position.x, transform.position.y, -97.1f);
+        // Get material of background
+        material = GetComponent<Renderer>().material;
+        // Set offset
+        offset = new Vector2(xVelocity, yVelocity);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.z <= posWhenReset.z)
-        {
-            transform.position = resetPos;
-        }
+        material.mainTextureOffset += offset * Time.deltaTime;
     }
 }

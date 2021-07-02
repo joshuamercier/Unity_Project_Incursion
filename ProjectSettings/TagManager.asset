@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Projectile_Enemy
   - Powerup
+  - Boundary
   layers:
   - Default
   - TransparentFX
