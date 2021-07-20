@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public GameObject projectilePrefab;
     
-    private float xRange = 62.0f;  // Boundary of player X-axis
-    private float zRange = 29.0f;  // boundary of player Z-axis
+    private float xRange = 66.0f;  // Boundary of player X-axis
+    private float yUpperRange = 68.0f; // Boundary of player Y upper
+    private float yLowerRange = 9.0f;  // Boundary of player Y lower
     private float fireRate = 0.5f; // Fire rate for player to shoot
     private float lastShot = 0.0f; // Last shot fired
    
@@ -48,14 +49,14 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
         // Keep player in upper boundary
-        if (transform.position.z > zRange)
+        if (transform.position.y > yUpperRange)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zRange);
+            transform.position = new Vector3(transform.position.x, yUpperRange);
         }
         // Keep player in lower boundary
-        if (transform.position.z < -zRange)
+        if (transform.position.y < -yLowerRange)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -zRange);
+            transform.position = new Vector3(transform.position.x, -yLowerRange);
         }
     }
 
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
 
         verticalInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
+        transform.Translate(Vector3.up * verticalInput * Time.deltaTime * speed);
     }
 
     void Fire()
