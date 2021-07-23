@@ -5,17 +5,18 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     // Class variables
-    public GameObject[] enemyPrefabs;          // Array of enemies
-    public GameObject[] obstaclesPrefabs;      // Array of obstacles
+    public GameObject[] enemyPrefabs;             // Array of enemies
+    public GameObject[] obstaclesPrefabs;         // Array of obstacles
 
-    private float spawnRangeTopX = 62.0f;       // Range of spawn for X coordiante top
-    private float spawnRangeTopY = 35.0f;       // Range of spawn for Z coordiante top
+    private float spawnRangeTopX = 66.0f;         // Range of spawn for X coordiante top
+    private float spawnRangeTopY = 74.0f;         // Range of spawn for Z coordiante top
 
-    private float spawnRangeSideX = 65.0f;     // Range of spawn for X coordiante sides
-    private float spawnRangeSideY = 29.0f;      // Range of spawn for Z coordiante sides
+    private float spawnRangeSideX = 74.0f;        // Range of spawn for X coordiante sides
+    private float spawnRangeSideUpY = 68.0f;      // Range of spawn for UP Y coordiante sides
+    private float spawnRangeSideLowY = 9.0f;      // Range of spawn for LOWER Y coordiante sides
 
-    private float startDelay = 2.0f;            // Seconds of delay for enemy spawning to begin
-    private float spawnInterval = 1.5f;         // Seconds between each enemy spawn
+    private float startDelay = 2.0f;              // Seconds of delay for enemy spawning to begin
+    private float spawnInterval = 1.5f;           // Seconds between each enemy spawn
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,7 @@ public class SpawnManager : MonoBehaviour
         // Index of obstacle to spawn
         int obstacleIndex = Random.Range(0, obstaclesPrefabs.Length);
         // Random vector3 location for obstacle to be spawned at
-        Vector3 spawnPos = new Vector3(-spawnRangeSideX, Random.Range(-spawnRangeSideY, spawnRangeSideY));
+        Vector3 spawnPos = new Vector3(-spawnRangeSideX, Random.Range(-spawnRangeSideLowY, spawnRangeSideUpY));
         // Creates random obstacle from the random index, places this obstacle in the random spawn location, and uses the obstacle prefab rotation as default
         Instantiate(obstaclesPrefabs[obstacleIndex], spawnPos, obstaclesPrefabs[obstacleIndex].transform.rotation);
     }
