@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     // Class variables
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI hullText;
     private int gameScore = 0;
     private int playerHull = 100;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Hull: " + playerHull);
-        Debug.Log("Score: " + gameScore);
+        hullText.text = "Hull: " + playerHull;
+        scoreText.text = "Score: " + gameScore;
     }
 
     // Update is called once per frame
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour
         if(playerHull > 0)
         {
             gameScore += amount;
-            Debug.Log("Score: " + gameScore);
+            scoreText.text = "Score: " + gameScore;
         }
 
     }
@@ -39,7 +42,7 @@ public class GameManager : MonoBehaviour
         // Check that player hasnt already finished the game
         if (playerHull > 0)
         {
-            Debug.Log("Hull: " + playerHull);
+            hullText.text = "Hull: " + playerHull;
         }
     }
 

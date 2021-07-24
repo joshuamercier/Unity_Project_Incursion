@@ -15,11 +15,13 @@ public class PlayerController : MonoBehaviour
     private float yLowerRange = 9.0f;  // Boundary of player Y lower
     private float fireRate = 0.5f; // Fire rate for player to shoot
     private float lastShot = 0.0f; // Last shot fired
+    private Transform firePort;    // Fire port for the ship to shoot
    
     // Start is called before the first frame update
     void Start()
     {
-
+        // Get gun port
+        firePort = transform.Find("Gun Port");
     }
 
     // Update is called once per frame
@@ -84,7 +86,7 @@ public class PlayerController : MonoBehaviour
         if(Time.time > fireRate + lastShot)
         {
             // Fire projectile
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            Instantiate(projectilePrefab, firePort.transform.position, projectilePrefab.transform.rotation);
             lastShot = Time.time;
         }
     }
