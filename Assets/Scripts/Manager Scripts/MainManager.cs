@@ -10,19 +10,20 @@ using TMPro;
 using UnityEditor;
 #endif
 
-// Singleton design pattern, only one instance of GameManager will ever exist in the game
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance { get; private set; }
 
-    public int highScore;         // High score of the player
-    public float musicVolume;     // Volume of the music set by the player
+    public int highScore;          // High score of the player
+    public int musicVolume;        // Volume of the music set by the player : Default 80%
+    public int effectsVolume;      // Volume of sound effects set by the player : Default 80%
 
-    [SerializeField] 
-    Slider volumeSlider;
+    [SerializeField]
+    Slider volumeMusicSlider, volumeEffectsSlider;
 
     private void Awake()
     {
+        // Singleton design pattern, only one instance of GameManager will ever exist
         // Prevents duplicates of GameManger from existing
         if (Instance != null)
         {
@@ -36,7 +37,7 @@ public class MainManager : MonoBehaviour
 
     public void StartNewGame()
     {
-        //AdjustVolume();
+        AdjustVolume();
         SceneManager.LoadScene(1);
     }
 
@@ -48,13 +49,22 @@ public class MainManager : MonoBehaviour
         Application.Quit();
 
     }
-    //public void AdjustVolume()
-   // {
-    //    volumeSlider = FindObjectOfType<Slider>();
-    //    musicVolume = volumeSlider.value;
-    //}
+    public void AdjustVolume()
+    {
+        if (GameObject.FindGameObjectWithTag ("slider_music"))
+        {
+            volumeMusicSlider = (Slider) FindObjectOfType(typeof (Slider));
+        }
+        if (GameObject.FindGameObjectWithTag("slider_effects"))
+        {
+            volumeMusicSlider = (Slider)FindObjectOfType(typeof(Slider));
+        }
 
-    [System.Serializable]
+        musicVolume = (int)volumeMusicSlider.value;
+        effectsVolume = (int)volumeEffectsSlider.value; ;
+    }
+
+[System.Serializable]
     class SaveData
     {
         public int PlayerHighScore;

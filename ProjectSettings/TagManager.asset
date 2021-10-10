@@ -10,6 +10,8 @@ TagManager:
   - Projectile_Enemy
   - Powerup
   - Boundary
+  - slider_music
+  - slider_effects
   layers:
   - Default
   - TransparentFX
