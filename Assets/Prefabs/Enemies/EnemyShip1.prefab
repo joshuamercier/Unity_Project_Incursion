@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 3511620749378265873}
   - component: {fileID: 3511620749378265872}
   - component: {fileID: 3511620749378265879}
-  - component: {fileID: -3461356854729436735}
-  - component: {fileID: 6771799251361378905}
-  - component: {fileID: 1701444703690567627}
-  - component: {fileID: 8123575914441861536}
+  - component: {fileID: -2487161544667888801}
+  - component: {fileID: 2290588139845295653}
   m_Layer: 0
   m_Name: EnemyShip1
   m_TagString: Enemy
@@ -86,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-3461356854729436735
+--- !u!114 &-2487161544667888801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,60 +93,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3511620749378265877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75cc1191b110e1b4d8fd18f80e1601fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 35cb85e650812ff46b1959927db55444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
---- !u!114 &6771799251361378905
-MonoBehaviour:
+  speed: 7
+  damageAmount: -20
+--- !u!65 &2290588139845295653
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3511620749378265877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e17f928098f9245aedd3c8d9e78f31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1701444703690567627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3511620749378265877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9a9bd077b67704e8adae4941150110, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &8123575914441861536
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3511620749378265877}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0020948648, y: -0.0062844753}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7080526, y: 1.0712242}
-  m_EdgeRadius: 0
+  m_Size: {x: 1.702561, y: 1.0582613, z: 1}
+  m_Center: {x: -0.0017136574, y: -0.029130578, z: 0}
 --- !u!1 &5655108918000154647
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
     // Class variables
-    private float horizontalInput;
-    private float verticalInput;
     public float speed;
     public GameObject projectilePrefab;
-    
+
+    private float horizontalInput;
+    private float verticalInput;
     private float xRange = 66.0f;  // Boundary of player X-axis
     private float yUpperRange = 68.0f; // Boundary of player Y upper
     private float yLowerRange = 9.0f;  // Boundary of player Y lower
     private float fireRate = 0.5f; // Fire rate for player to shoot
     private float lastShot = 0.0f; // Last shot fired
     private Transform firePort;    // Fire port for the ship to shoot
-   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,12 +83,16 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
-        if(Time.time > fireRate + lastShot)
+        if (Time.time > fireRate + lastShot)
         {
-            // Fire projectile
-            Instantiate(projectilePrefab, firePort.transform.position, projectilePrefab.transform.rotation);
+            // Fire projectile from projectile pool
+            GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
+            if (pooledProjectile != null)
+            {
+                pooledProjectile.SetActive(true); // activate it
+                pooledProjectile.transform.position = firePort.transform.position; // position it at player
+            }
             lastShot = Time.time;
         }
     }
 }
-

@@ -94,9 +94,7 @@ GameObject:
   - component: {fileID: 3629301782887906343}
   - component: {fileID: 3629301782887906342}
   - component: {fileID: 3629301782887906341}
-  - component: {fileID: -1477433145005951618}
-  - component: {fileID: -629379954594425180}
-  - component: {fileID: -8386332009090390815}
+  - component: {fileID: -3448304877328165544}
   m_Layer: 0
   m_Name: Asteroid_1
   m_TagString: Obstacle
@@ -182,7 +180,7 @@ CapsuleCollider:
   m_Height: 2.1689303
   m_Direction: 1
   m_Center: {x: 0, y: 0.004968524, z: -0.02484262}
---- !u!114 &-1477433145005951618
+--- !u!114 &-3448304877328165544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,31 +189,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3629301782887906340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75cc1191b110e1b4d8fd18f80e1601fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 888ce9e48e95b0943853df9c025274e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
---- !u!114 &-629379954594425180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3629301782887906340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e17f928098f9245aedd3c8d9e78f31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-8386332009090390815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3629301782887906340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9a9bd077b67704e8adae4941150110, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  speed: 6
+  damageAmount: -10
