@@ -15,39 +15,84 @@ public class SpawnManager : MonoBehaviour
     private float spawnRangeSideUpY = 68.0f;      // Range of spawn for UP Y coordiante sides
     private float spawnRangeSideLowY = 9.0f;      // Range of spawn for LOWER Y coordiante sides
 
-    private float startDelay = 2.0f;              // Seconds of delay for enemy spawning to begin
     private float spawnInterval = 1.5f;           // Seconds between each enemy spawn
+    private float checkRadius = 3f;               // Radius to check for collider overlaps
+    private int maxSpawnAttempts = 10;            // Max attempts to spawn to prevent infinite looping
+
+    // Coroutines
+    private IEnumerator coSpawnRandomEnemy, coSpawnRandomObstacle;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnRandomEnemy", startDelay, spawnInterval);
-        InvokeRepeating("SpawnRandomObstacle", startDelay, spawnInterval);
+        coSpawnRandomEnemy = SpawnRandomEnemyOrObstacle("Enemy");
+        coSpawnRandomObstacle = SpawnRandomEnemyOrObstacle("Obstacle");
+
+        StartCoroutine(coSpawnRandomEnemy);
+        StartCoroutine(coSpawnRandomObstacle);
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnRandomEnemyOrObstacle(string objectType)
     {
+        while (true)
+        {
+            yield return new WaitForSeconds(spawnInterval);
 
+            int objectIndex = Random.Range(0, enemyPrefabs.Length);     // Index of enemy to spawn
+            bool validPosition = true;                                  // Boolean flag to decide whether or not we can spawn in this position
+            int spawnAttempts = 0;                                      // How many times we've attempted to spawn this obstacle
+            Vector3 spawnPos = Vector3.zero;                            // Spawn position vector3
+
+            do
+            {
+                // Increment spawn attempts
+                spawnAttempts++;
+                // Get a random Vector3 position for spawn within spawn boundaries, then check if location is valid for spawn...
+                if (objectType == "Enemy")
+                {
+                    spawnPos = new Vector3(Random.Range(-spawnRangeTopX, spawnRangeTopX), spawnRangeTopY);
+                    validPosition = CheckLocationValid("Enemy", spawnPos);
+                }
+                else if(objectType == "Obstacle"){
+                    spawnPos = new Vector3(-spawnRangeSideX, Random.Range(-spawnRangeSideLowY, spawnRangeSideUpY));
+                    validPosition = CheckLocationValid("Obstacle", spawnPos);
+                } 
+            } while (!validPosition && spawnAttempts < maxSpawnAttempts);
+
+            // If we exited the loop with a valid position
+            if (validPosition)
+            {
+                // Spawn object at location
+                if (objectType == "Enemy")
+                {
+                    Instantiate(enemyPrefabs[objectIndex], spawnPos, enemyPrefabs[objectIndex].transform.rotation);
+                }
+                else if (objectType == "Obstacle")
+                {
+                    Instantiate(obstaclesPrefabs[objectIndex], spawnPos, obstaclesPrefabs[objectIndex].transform.rotation);
+                }
+            }
+        }
     }
 
-    void SpawnRandomEnemy()
+    // This method takes in two parameters, the tag to check against and the spawn position Vector coordinates to check at.
+    // Returns bool true or false if location is acceptable for spawning
+    bool CheckLocationValid(string objectTag, Vector3 spawnPos)
     {
-        // Index of enemy to spawn
-        int enemyIndex = Random.Range(0, enemyPrefabs.Length);
-        // Random vector3 location for enemy to be spawned at
-        Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeTopX, spawnRangeTopX), spawnRangeTopY);
-        // Creates random enemy from the random index, places this enemy in the random spawn location, and uses the enemy prefab rotation as default
-        Instantiate(enemyPrefabs[enemyIndex], spawnPos, enemyPrefabs[enemyIndex].transform.rotation);
-    }
+        // Collect all object colliders within our Obstacle Check Radius
+        Collider[] colliders = Physics.OverlapSphere(spawnPos, checkRadius);
 
-    void SpawnRandomObstacle()
-    {
-        // Index of obstacle to spawn
-        int obstacleIndex = Random.Range(0, obstaclesPrefabs.Length);
-        // Random vector3 location for obstacle to be spawned at
-        Vector3 spawnPos = new Vector3(-spawnRangeSideX, Random.Range(-spawnRangeSideLowY, spawnRangeSideUpY));
-        // Creates random obstacle from the random index, places this obstacle in the random spawn location, and uses the obstacle prefab rotation as default
-        Instantiate(obstaclesPrefabs[obstacleIndex], spawnPos, obstaclesPrefabs[obstacleIndex].transform.rotation);
+        // Go through each object collider collected
+        foreach (Collider col in colliders)
+        {
+            // If this collider is tagged with the object tag...
+            if (col.tag == objectTag)
+            {
+                // ...then this position is not a valid spawn position
+                return false;
+            }
+        }
+        // ...otherwise return true
+        return true;
     }
 }
