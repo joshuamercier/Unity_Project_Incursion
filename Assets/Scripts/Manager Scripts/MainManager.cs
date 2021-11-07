@@ -14,13 +14,14 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance { get; private set; }
 
-    public int highScore;          // High score of the player
+    public int highScore;               // High score of the player
     public int musicVolume = 80;        // Volume of the music set by the player : Default 80%
     public int effectsVolume = 80;      // Volume of sound effects set by the player : Default 80%
 
     [SerializeField]
     Slider volumeMusicSlider, volumeEffectsSlider;
-    GameObject mainScreen, optionScreen;
+    GameObject mainScreen, optionScreen, shipUIScreen, endScreen;
+    bool gameActive;
 
     private void Awake()
     {
@@ -34,16 +35,32 @@ public class MainManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+    // Delegates for Scene management
+    private void OnEnable()
+    {
+        //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    private void OnDisable()
+    {
+        //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         // Create a temporary reference to the current scene.
         Scene currentScene = SceneManager.GetActiveScene();
 
         // Retrieve the index of the scene in the project's build settings.
         int buildIndex = currentScene.buildIndex;
-
-        // If index 0 (Main Menu Scene) then retrieve the main and option screen objects
-        if(buildIndex == 0)
+        Debug.Log("About to check build scene...");
+        // If index 0 (Main Menu Scene) then retrieve the main Menu Screen objects
+        if (buildIndex == 0)
         {
+            Debug.Log("In build scene 0");
             mainScreen = GameObject.Find("Main Screen");
             optionScreen = GameObject.Find("Option Screen");
 
@@ -55,8 +72,15 @@ public class MainManager : MonoBehaviour
             {
                 volumeEffectsSlider = (Slider)FindObjectOfType(typeof(Slider));
             }
+            optionScreen.SetActive(false);
         }
-        optionScreen.SetActive(false);
+        else if (buildIndex == 1) // In Game Scene, then get the related Screens
+        {
+            Debug.Log("In build scene 1");
+            endScreen = GameObject.Find("End Screen");
+            shipUIScreen = GameObject.Find("Ship UI");
+            endScreen.SetActive(false);
+        }
     }
 
     public void StartNewGame()
@@ -65,6 +89,20 @@ public class MainManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void GameEnd()
+    {
+        endScreen.gameObject.SetActive(true);
+        shipUIScreen.gameObject.SetActive(false);
+        gameActive = false;
+
+        // TODO
+        //UpdateHighScore();
+    }
+
+    public void ReturnMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void Exit()
     {
         // Closes game

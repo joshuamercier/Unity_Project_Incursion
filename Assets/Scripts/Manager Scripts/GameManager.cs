@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI hullText;
 
+    private MainManager mainManager;
     private float xRange = 75.0f;       // Boundary of X-axis destruction
     private float yUpperRange = 75.0f;  // boundary of lower Y-axis destruction
     private float yLowerRange = -15.0f; // boundary of lower Y-axis destruction
@@ -36,13 +37,9 @@ public class GameManager : MonoBehaviour
     {
         hullText.text = "Hull: " + playerHull;
         scoreText.text = "Score: " + gameScore;
+        mainManager = GameObject.Find("MainManager").GetComponent<MainManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     // Method for adding/decreasing score
     public void AddScore(int amount)
     {
@@ -71,6 +68,7 @@ public class GameManager : MonoBehaviour
         if (playerHull <= 0)
         {
             Debug.Log("Game Over!");
+            mainManager.GameEnd();
         }
     }
 
